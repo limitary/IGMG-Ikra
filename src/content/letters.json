@@ -1,0 +1,14 @@
+[
+  { "id": "elif", "char": "ا", "name": "Elif" },
+  { "id": "be", "char": "ب", "name": "Be" },
+  { "id": "te", "char": "ت", "name": "Te" },
+  { "id": "se", "char": "ث", "name": "Se" },
+  { "id": "cim", "char": "ج", "name": "Cim" },
+  { "id": "ha", "char": "ح", "name": "Ha" },
+  { "id": "hi", "char": "خ", "name": "Hı" },
+  { "id": "dal", "char": "د", "name": "Dal" },
+  { "id": "zel", "char": "ذ", "name": "Zel" },
+  { "id": "ra", "char": "ر", "name": "Ra" },
+  { "id": "ze", "char": "ز", "name": "Ze" },
+  { "id": "sin", "char": "س", "name": "Sin" }
+]

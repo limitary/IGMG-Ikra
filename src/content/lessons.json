@@ -1,0 +1,35 @@
+[
+  {
+    "id": "les-1",
+    "demo": true,
+    "title": { "tr": "Ders 1: Elif – Be – Te – Se", "nl": "Les 1: Elif – Be – Te – Se", "de": "Lektion 1: Elif – Be – Te – Se" },
+    "teacherNote": {
+      "tr": "Örnek not: Harfleri tek tek gösterin ve öğrencilerle birlikte tekrar edin.",
+      "nl": "Voorbeeldnotitie: toon de letters één voor één en herhaal ze samen met de leerlingen.",
+      "de": "Beispielnotiz: Zeigen Sie die Buchstaben einzeln und wiederholen Sie sie gemeinsam."
+    },
+    "letters": ["elif", "be", "te", "se"]
+  },
+  {
+    "id": "les-2",
+    "demo": true,
+    "title": { "tr": "Ders 2: Cim – Ha – Hı – Dal", "nl": "Les 2: Cim – Ha – Hı – Dal", "de": "Lektion 2: Cim – Ha – Hı – Dal" },
+    "teacherNote": {
+      "tr": "Örnek not: Benzer görünen harflerin noktalarına dikkat çekin.",
+      "nl": "Voorbeeldnotitie: wijs op de puntjes bij letters die op elkaar lijken.",
+      "de": "Beispielnotiz: Weisen Sie auf die Punkte bei ähnlich aussehenden Buchstaben hin."
+    },
+    "letters": ["cim", "ha", "hi", "dal"]
+  },
+  {
+    "id": "les-3",
+    "demo": true,
+    "title": { "tr": "Ders 3: Zel – Ra – Ze – Sin", "nl": "Les 3: Zel – Ra – Ze – Sin", "de": "Lektion 3: Zel – Ra – Ze – Sin" },
+    "teacherNote": {
+      "tr": "Örnek not: Ra ve Ze harflerini karşılaştırın.",
+      "nl": "Voorbeeldnotitie: vergelijk de letters Ra en Ze.",
+      "de": "Beispielnotiz: Vergleichen Sie die Buchstaben Ra und Ze."
+    },
+    "letters": ["zel", "ra", "ze", "sin"]
+  }
+]
