@@ -1,0 +1,8 @@
+[
+  {
+    "id": "demo-lesboek",
+    "demo": true,
+    "title": { "tr": "Örnek ders kitabı", "nl": "Voorbeeld-lesboek", "de": "Beispiel-Lehrbuch" },
+    "file": "content/pdf/demo-lesboek.pdf"
+  }
+]

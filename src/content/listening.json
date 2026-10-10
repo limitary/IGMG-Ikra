@@ -1,0 +1,23 @@
+[
+  {
+    "id": "demo-1",
+    "demo": true,
+    "title": { "tr": "Örnek parça 1", "nl": "Demofragment 1", "de": "Demo-Abschnitt 1" },
+    "lines": ["ا ب ت ث", "ج ح خ"],
+    "audio": "content/audio/demo-recitatie-1.wav"
+  },
+  {
+    "id": "demo-2",
+    "demo": true,
+    "title": { "tr": "Örnek parça 2", "nl": "Demofragment 2", "de": "Demo-Abschnitt 2" },
+    "lines": ["د ذ ر ز س"],
+    "audio": "content/audio/demo-recitatie-2.wav"
+  },
+  {
+    "id": "demo-3",
+    "demo": true,
+    "title": { "tr": "Örnek parça 3 (ses yok)", "nl": "Demofragment 3 (zonder audio)", "de": "Demo-Abschnitt 3 (ohne Audio)" },
+    "lines": ["ا ب ت"],
+    "audio": null
+  }
+]
