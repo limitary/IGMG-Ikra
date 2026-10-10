@@ -14,7 +14,9 @@
     "test": "vitest run",
     "test:e2e": "npm run build && playwright test",
     "make:demo": "python3 scripts/make-demo-assets.py",
-    "dist:linux": "npm run build && electron-builder --linux AppImage --publish never"
+    "dist:linux": "npm run build && electron-builder --linux AppImage --publish never",
+    "dist:win": "npm run build && electron-builder --win nsis --x64 --publish never",
+    "make:icon": "python3 scripts/make-icon.py"
   },
   "devDependencies": {
     "@fontsource/amiri": "^5.3.0",
@@ -55,18 +57,39 @@
         "AppImage"
       ],
       "category": "Education",
-      "syncDesktopName": true
+      "syncDesktopName": true,
+      "icon": "build/icon.png"
     },
     "win": {
       "target": [
-        "nsis"
-      ]
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "IGMG-Ikra-Setup-${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": true
-    }
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "IGMG İkra",
+      "deleteAppDataOnUninstall": false,
+      "multiLanguageInstaller": true,
+      "installerLanguages": [
+        "nl_NL",
+        "tr_TR",
+        "de_DE"
+      ],
+      "language": "1043"
+    },
+    "copyright": "IGMG"
   },
   "desktopName": "igmg-ikra.desktop"
 }

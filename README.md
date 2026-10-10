@@ -66,9 +66,6 @@ npm run dist:linux   # maakt release/IGMG Ikra-<versie>.AppImage
 - `IKRA_EXECUTABLE=<pad>` test een gebouwde app (bijvoorbeeld de AppImage) in plaats van de lokale build.
 - Tests gebruiken altijd een **tijdelijk, apart profiel** (`IKRA_USER_DATA_DIR`). Echte gegevens
   worden nooit aangeraakt.
-- Een Windows-installer is ingesteld (`electron-builder --win`), maar nog **niet gebouwd of
-  getest**. Bouw die op een Windows-machine.
-
 ### Mappen
 
 ```
@@ -79,6 +76,34 @@ public/content/  audio en PDF's (worden meegeleverd in de app)
 scripts/         demo-bestanden maken, schermafbeeldingen
 tests/e2e/       eind-tot-eindtests van de desktopapp
 ```
+
+## Windows-installer
+
+De installer wordt automatisch gebouwd en getest door **GitHub Actions** op een echte
+Windows-computer. Dat gebeurt bij elke pull request en bij elke wijziging op `main`. Je kunt
+het ook zelf starten: tabblad **Actions** → **Windows-installer** → **Run workflow**.
+
+Zo download je de installer:
+1. Ga naar het tabblad **Actions** en open de laatste groene run van **Windows-installer**.
+2. Onderaan, bij **Artifacts**, klik je op **IGMG-Ikra-Windows-installer**. Je krijgt een zip.
+3. Pak de zip uit en start `IGMG-Ikra-Setup-<versie>.exe`.
+
+Over de installer:
+- Hij installeert **zonder beheerdersrechten**, alleen voor de huidige gebruiker. Bij installatie
+  kun je ook kiezen voor alle gebruikers.
+- Er komt een snelkoppeling op het bureaublad en in het Startmenu.
+- De installer is beschikbaar in Nederlands, Türkçe en Deutsch.
+- Bij verwijderen blijven voortgang en instellingen bewaard.
+- **Windows SmartScreen** kan waarschuwen ("Onbekende uitgever"), omdat de installer niet
+  digitaal ondertekend is. Klik op *Meer informatie* → *Toch uitvoeren*. Voor gebruik op
+  scholen is een code-signing-certificaat aan te raden.
+- Een Actions-download blijft 14 dagen bewaard.
+
+Zelf bouwen op een Windows-computer: `npm install` en daarna `npm run dist:win`.
+Het bestand verschijnt in `release/`.
+
+Het tijdelijke app-icoon staat in `build/` (gemaakt met `npm run make:icon`). Vervang
+`build/icon.png` en `build/icon.ico` door het officiële logo.
 
 ## Inhoud vervangen
 
