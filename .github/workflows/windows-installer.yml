@@ -1,0 +1,75 @@
+# Bouwt en test de Windows-installer op een echte Windows-computer van GitHub.
+# Het resultaat (IGMG-Ikra-Setup-<versie>.exe) staat daarna onder
+# Actions → deze run → "Artifacts". Er wordt niets gepubliceerd.
+name: Windows-installer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Pakketten installeren
+        run: npm ci
+
+      - name: TypeScript-controle
+        run: npm run typecheck
+
+      - name: Unit-tests
+        run: npm test
+
+      - name: Installer bouwen
+        run: npm run dist:win
+
+      - name: Gebouwde app testen (zonder server, netwerk geblokkeerd)
+        shell: pwsh
+        run: |
+          $env:IKRA_EXECUTABLE = (Resolve-Path "release\win-unpacked\igmg-ikra.exe").Path
+          npx playwright test
+
+      - name: Installer stil installeren
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem release\IGMG-Ikra-Setup-*.exe | Select-Object -First 1
+          Start-Process -FilePath $setup.FullName -ArgumentList '/S' -Wait
+          $exe = Get-ChildItem "$env:LOCALAPPDATA\Programs" -Recurse -Filter igmg-ikra.exe | Select-Object -First 1
+          if (-not $exe) { throw 'Geïnstalleerde app niet gevonden' }
+          Write-Host "Geïnstalleerd in: $($exe.FullName)"
+          "IKRA_INSTALLED_EXE=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Geïnstalleerde app testen
+        shell: pwsh
+        run: |
+          $env:IKRA_EXECUTABLE = $env:IKRA_INSTALLED_EXE
+          npx playwright test
+
+      - name: Installer bewaren
+        uses: actions/upload-artifact@v4
+        with:
+          name: IGMG-Ikra-Windows-installer
+          path: release/IGMG-Ikra-Setup-*.exe
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Testresultaten bewaren bij een fout
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testresultaten
+          path: test-results/
+          retention-days: 7
